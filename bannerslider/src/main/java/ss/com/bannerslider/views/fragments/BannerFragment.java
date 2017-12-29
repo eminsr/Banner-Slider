@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import ss.com.bannerslider.banners.Banner;
@@ -51,7 +53,24 @@ public class BannerFragment extends Fragment {
             } else {
                 final RemoteBanner remoteBanner = (RemoteBanner) banner;
                 if (remoteBanner.getErrorDrawable() == null && remoteBanner.getPlaceHolder() == null) {
-                    Picasso.with(getActivity()).load(remoteBanner.getUrl()).into(imageView);
+                    //Picasso.with(getActivity()).load(remoteBanner.getUrl()).into(imageView);
+                    Picasso.with(getActivity())
+                            .load(remoteBanner.getUrl())
+                            .networkPolicy(NetworkPolicy.OFFLINE)
+                            .into(imageView, new Callback() {
+                                @Override
+                                public void onSuccess() {
+                                    //Loaded from Disk Cache
+                                }
+
+                                @Override
+                                public void onError() {
+                                    //Try again online if cache failed
+                                    Picasso.with(getActivity())
+                                            .load(remoteBanner.getUrl())
+                                            .into(imageView);
+                                }
+                            });
                 } else {
                     if (remoteBanner.getPlaceHolder() != null && remoteBanner.getErrorDrawable() != null) {
                         Picasso.with(getActivity()).load(remoteBanner.getUrl()).placeholder(remoteBanner.getPlaceHolder()).error(remoteBanner.getErrorDrawable()).into(imageView);
