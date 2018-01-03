@@ -1,8 +1,8 @@
 # Banner-Slider
 Banner slider is an easy to use library for making beautiful sliders in your android app.
 
-Supports Picasso disk cache. For more information https://github.com/JakeWharton/picasso2-okhttp3-downloader
-Added OnSlideChangeListener support based on gbelisario's solution. https://github.com/gbelisario
+- Supports Picasso disk cache. For more information https://github.com/JakeWharton/picasso2-okhttp3-downloader
+- Added OnSlideChangeListener support based on gbelisario's solution. https://github.com/gbelisario
 
 <img src="https://github.com/saeedsh92/Banner-Slider/blob/master/Screenshot_1481531647.png?raw=true" width="350">
 
