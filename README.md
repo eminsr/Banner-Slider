@@ -1,23 +1,19 @@
 # Banner-Slider
 Banner slider is an easy to use library for making beautiful sliders in your android app.
 
+Supports Picasso disk cache. For more information https://github.com/JakeWharton/picasso2-okhttp3-downloader
+Added OnSlideChangeListener support based on gbelisario's solution. https://github.com/gbelisario
+
 <img src="https://github.com/saeedsh92/Banner-Slider/blob/master/Screenshot_1481531647.png?raw=true" width="350">
 
+![Release](https://jitpack.io/v/eminsr/Banner-Slider.svg)
+(https://jitpack.io/#eminsr/Banner-Slider/1.0)
 
 ## How to download
 ### Gradle
 add this line to your module build.gradle dependecies block:
 
-    compile 'com.ss.bannerslider:bannerslider:1.8.0'
-
-### Maven
-
-    <dependency>
-      <groupId>com.ss.bannerslider</groupId>
-      <artifactId>bannerslider</artifactId>
-      <version>1.6.1</version>
-      <type>pom</type>
-    </dependency>
+        implementation 'com.github.eminsr:Banner-Slider:1.0'
 
 ## How use this library
 ### XML
@@ -106,6 +102,15 @@ bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
     }
   });
 ```
+#### Set OnSlideChangeListener
+```java
+bannerSlider.setOnSlideChangeListener(new setOnSlideChangeListener() {
+  @Override
+    public void onSlideChange(int i) {
+        Toast.makeText(MainActivity.this, "Slider position " + String.valueOf(position), Toast.LENGTH_SHORT).show();
+    }
+  });
+```
 #### Remove all banners
 ```java
     bannerSlider.removeAllBanners();
@@ -125,8 +130,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-## Author
-Saeed shahini
+## Based on Saeed shahini's Library
+
+https://github.com/saeedsh92/Banner-Slider
 
 email: saeedshahiniit@gmail.com
 
