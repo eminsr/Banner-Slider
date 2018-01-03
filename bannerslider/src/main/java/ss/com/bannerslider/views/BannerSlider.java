@@ -24,6 +24,7 @@ import java.util.TimerTask;
 import ss.com.bannerslider.R;
 import ss.com.bannerslider.banners.Banner;
 import ss.com.bannerslider.events.OnBannerClickListener;
+import ss.com.bannerslider.events.OnSlideChangeListener;
 import ss.com.bannerslider.views.BannerAdapter;
 import ss.com.bannerslider.views.IAttributeChange;
 import ss.com.bannerslider.views.SlideIndicatorsGroup;
@@ -40,6 +41,7 @@ public class BannerSlider extends FrameLayout implements ViewPager.OnPageChangeL
     private AppCompatActivity hostActivity;
     private CustomViewPager viewPager;
     private OnBannerClickListener onBannerClickListener;
+    private OnSlideChangeListener onSlideChangeListener;
 
     //Custom attributes
     private Drawable selectedSlideIndicator;
@@ -243,6 +245,9 @@ public class BannerSlider extends FrameLayout implements ViewPager.OnPageChangeL
         } else {
             slideIndicatorsGroup.onSlideChange(position);
         }
+        if(onSlideChangeListener != null) {
+            onSlideChangeListener.onSlideChange(position);
+        }
     }
 
     @Override
@@ -386,6 +391,10 @@ public class BannerSlider extends FrameLayout implements ViewPager.OnPageChangeL
                 banners) {
             banner.setOnBannerClickListener(onBannerClickListener);
         }
+    }
+
+    public void setOnSlideChangeListener(OnSlideChangeListener onSlideChangeListener) {
+        this.onSlideChangeListener = onSlideChangeListener;
     }
 
     public void setCurrentSlide(final int position) {
